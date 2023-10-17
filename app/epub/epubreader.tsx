@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import ePub, { Book } from "epubjs";
 
-export const EpubReader = ({ epubFile:any }) => {
+export const EpubReader = ({ epubFile }:{epubFile:any}) => {
   useEffect(() => {
     console.log("initiales");
 
@@ -28,7 +28,9 @@ export const EpubReader = ({ epubFile:any }) => {
       const nextButton = document.getElementById("next-button");
       const prevButton = document.getElementById("prev-button");
 
+      if(nextButton)
       nextButton.addEventListener("click", () => rendition.next());
+    if(prevButton)
       prevButton.addEventListener("click", () => rendition.prev());
     };
 
