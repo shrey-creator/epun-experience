@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import ePub, { Book } from "epubjs";
 
-export const EpubReader = ({ epubFile }) => {
+export const EpubReader = ({ epubFile:any }) => {
   useEffect(() => {
     console.log("initiales");
 
