@@ -13,7 +13,7 @@ export const EpubReader = ({ epubFile }:{epubFile:any}) => {
       const isLaptop = window.innerWidth > 768; // Adjust the screen width threshold as needed
 
       // Configure the `flow` based on the device type
-      const flow = isLaptop ? "paginated" : "scrolled-doc";
+      const flow = isLaptop ? "paginated" : "paginated";
 
       const rendition = book.renderTo("reader", {
                 flow: flow,
