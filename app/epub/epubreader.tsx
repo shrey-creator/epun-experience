@@ -1,14 +1,16 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ePub, { Book } from "epubjs";
 
 export const EpubReader = ({ epubFile }:{epubFile:any}) => {
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    console.log("initiales");
 
     const initializeReader = async () => {
       const book = new Book(epubFile, {});
       await book.open(epubFile);
+
 
       const isLaptop = window.innerWidth > 768; // Adjust the screen width threshold as needed
 
@@ -32,15 +34,32 @@ export const EpubReader = ({ epubFile }:{epubFile:any}) => {
       nextButton.addEventListener("click", () => rendition.next());
     if(prevButton)
       prevButton.addEventListener("click", () => rendition.prev());
-    };
 
+      setIsLoading(false);
+
+    };
+    
+    if(isLoading===true)
+    {
     initializeReader();
-  }, [epubFile]);
+    }
+   
+  }, [isLoading]);
 
   return (
     <div className="epub-reader-container">
+
+    
       <div className="book-content">
-        <div id="reader">{/* Your book content goes here */}</div>
+      {
+    isLoading ? (
+      <div className="loading-spinner">
+        <div className="spinner"></div>
+      </div>
+    ):
+        (<div id="reader">{/* Your book content goes here */}</div>
+  )
+  }
         <div className="book-controls">
           <button id="prev-button" className="arrow-button">
             &lt; {/* Left arrow symbol */}
@@ -50,6 +69,8 @@ export const EpubReader = ({ epubFile }:{epubFile:any}) => {
           </button>
         </div>
       </div>
+
     </div>
+
   );
 };
