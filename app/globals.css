@@ -1,10 +1,16 @@
+a{
+  text-decoration: none;
+}
+body{
+  background-color: #FFFFED;
+}
 
 .epub-reader-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #f0f0f0;
+  background-color: #FFFFED;
   padding: 20px; 
 }
 
