@@ -30,6 +30,27 @@ import ePub, { Book } from "epubjs";
       const nextButton = document.getElementById("next-button");
       const prevButton = document.getElementById("prev-button");
 
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      document?.getElementById("epub-reader").addEventListener("touchstart", (e) => {
+        console.log('testing')
+        touchStartX = e.touches[0].clientX;
+      });
+
+      document?.getElementById("epub-reader").addEventListener("touchend", (e) => {
+        touchEndX = e.changedTouches[0].clientX;
+        if (touchStartX - touchEndX > 50) {
+          // Swipe left, navigate to the next page
+          rendition.next();
+        } else if (touchEndX - touchStartX > 50) {
+          // Swipe right, navigate to the previous page
+          rendition.prev();
+        }
+      });
+    
+
+
       if(nextButton)
       nextButton.addEventListener("click", () => rendition.next());
     if(prevButton)
@@ -47,7 +68,7 @@ import ePub, { Book } from "epubjs";
   }, [isLoading]);
 
   return (
-    <div className="epub-reader-container">
+    <div className="epub-reader-container" id="epub-reader">
 
     
       <div className="book-content">
