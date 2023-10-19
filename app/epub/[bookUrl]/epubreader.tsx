@@ -33,12 +33,12 @@ import ePub, { Book } from "epubjs";
       let touchStartX = 0;
       let touchEndX = 0;
 
-      document?.getElementById("epub-reader").addEventListener("touchstart", (e) => {
+      document?.getElementById("epub-reader")?.addEventListener("touchstart", (e) => {
         console.log('testing')
         touchStartX = e.touches[0].clientX;
       });
 
-      document?.getElementById("epub-reader").addEventListener("touchend", (e) => {
+      document?.getElementById("epub-reader")?.addEventListener("touchend", (e) => {
         touchEndX = e.changedTouches[0].clientX;
         if (touchStartX - touchEndX > 50) {
           // Swipe left, navigate to the next page
