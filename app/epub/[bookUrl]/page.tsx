@@ -7,8 +7,7 @@ export default function BookViewer() {
   const params = useParams();
 
   return (
-    <div>
       <EpubReader   epubFile={params.bookUrl} />
-    </div>
+  
   );
 }
