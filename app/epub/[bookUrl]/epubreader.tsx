@@ -15,15 +15,14 @@ import ePub, { Book } from "epubjs";
       const isLaptop = window.innerWidth > 768; // Adjust the screen width threshold as needed
 
       // Configure the `flow` based on the device type
-      const flow = isLaptop ? "paginated" : "paginated";
+      // const flow = isLaptop ? "scrolled-doc" : "scrolled-doc";
 
       const rendition = book.renderTo("reader", {
-                flow: flow,
+                flow: 'scrolled-doc',
         width: "900",
         height: "600",
         resizeOnOrientationChange: true,
       });
-
       const displayed = rendition.display();
 
       // Implement pagination controls
